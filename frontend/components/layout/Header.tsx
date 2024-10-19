@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../App';
+import { RootStackParamList } from '../../App';
 
 const Header: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <TouchableOpacity style={styles.headerContainer} onPress={navigateHome}>
       <Image
-        source={require('../assets/banco-logo.png')}
+        source={require('../../assets/banco-logo.png')}
         style={styles.logo}
         resizeMode="contain"
       />

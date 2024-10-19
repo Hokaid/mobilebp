@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/9</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
@@ -251,7 +251,12 @@
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,20 +333,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -350,13 +363,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -448,6 +454,8 @@ import { useIsFocused } from '@react-navigation/native';
 import { RootStackParamList } from '../App';
 import Header from '../components/Header';
 import { API_URL } from '@env';
+import PrimaryButton from '../components/Buttons/PrimaryButton';
+import FixedFooter from '../components/FixedFooter';
 &nbsp;
 type HomeScreenProps = NativeStackScreenProps&lt;RootStackParamList, 'HomeScreen'&gt;;
 &nbsp;
@@ -515,13 +523,13 @@ const HomeScreen: React.FC&lt;HomeScreenProps&gt; = ({ navigation }) =&gt; {
     &lt;/TouchableOpacity&gt;
   );
 &nbsp;
-  if (loading) {
-    return (
-      &lt;View style={styles.loadingContainer}&gt;
+  const renderFooter = () =&gt; {
+    return loading ? (
+      &lt;View style={{ padding: 10 }}&gt;
         &lt;ActivityIndicator size="large" color="#FFD700" /&gt;
       &lt;/View&gt;
-    );
-  }
+    ) : null;
+  };
 &nbsp;
   return (
     &lt;SafeAreaView style={styles.container}&gt;
@@ -539,13 +547,14 @@ const HomeScreen: React.FC&lt;HomeScreenProps&gt; = ({ navigation }) =&gt; {
           renderItem={renderItem}
           keyExtractor={<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.id}</span>
           style={styles.flatList}
+          onScrollEndDrag={fetchData}
+          initialNumToRender={6}
+          maxToRenderPerBatch={6}
+          ListFooterComponent={renderFooter}
         /&gt;
-        &lt;TouchableOpacity 
-          style={styles.button} 
-          onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('ProductFormScreen', {})}</span>
-        &gt;
-          &lt;Text style={styles.buttonText}&gt;Agregar&lt;/Text&gt;
-        &lt;/TouchableOpacity&gt;
+        &lt;FixedFooter&gt;
+          &lt;PrimaryButton onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('ProductFormScreen', {})}</span> buttonText={'Agregar'} /&gt;
+        &lt;/FixedFooter&gt;
       &lt;/View&gt;
     &lt;/SafeAreaView&gt;
   );
@@ -634,7 +643,7 @@ export default HomeScreen;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-06T02:01:06.619Z
+                at 2024-10-17T23:46:37.565Z
             </div>
         <script src="../prettify.js"></script>
         <script>

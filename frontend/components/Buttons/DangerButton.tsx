@@ -6,13 +6,13 @@ type DangerButtonProps = {
   buttonText: string;
 };
 
-const DangerButton: React.FC<DangerButtonProps> = ({ onPress, buttonText }) => {
+const DangerButton: React.FC<DangerButtonProps> = React.memo(({ onPress, buttonText }) => {
   return (
     <TouchableOpacity style={styles.dangerButton} onPress={onPress}>
       <Text style={styles.dangerButtonText}>{buttonText}</Text>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   dangerButton: {

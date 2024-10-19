@@ -6,13 +6,13 @@ type PrimaryButtonProps = {
   buttonText: string;
 };
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, buttonText }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = React.memo(({ onPress, buttonText }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{buttonText}</Text>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   button: {

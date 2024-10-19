@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { format } from 'date-fns';
+import { formatDateWithoutTimezone } from '../utils/helpers';
 
 interface DatePickerProps {
   label: string;
@@ -33,7 +33,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, value, onChangeDate, err
         style={[styles.input, error ? styles.inputError : {}]}
         onPress={showDatePicker}
       >
-        <Text>{value ? format(new Date(value), 'dd/MM/yyyy') : 'Seleccione una fecha'}</Text>
+        <Text>{value ? formatDateWithoutTimezone(value) : 'Seleccione una fecha'}</Text>
       </TouchableOpacity>
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
       <DateTimePickerModal

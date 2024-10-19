@@ -6,13 +6,13 @@ type SecondaryButtonProps = {
   buttonText: string;
 };
 
-const SecondaryButton: React.FC<SecondaryButtonProps> = ({ onPress, buttonText }) => {
+const SecondaryButton: React.FC<SecondaryButtonProps> = React.memo(({ onPress, buttonText }) => {
   return (
     <TouchableOpacity style={styles.secondaryButton} onPress={onPress}>
       <Text style={styles.secondaryButtonText}>{buttonText}</Text>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   secondaryButton: {
