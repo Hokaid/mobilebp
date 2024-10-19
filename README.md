@@ -52,7 +52,7 @@ The project is divided into two main parts:
 
 3. Start the server:
    ```
-   npm start
+   npm run start:dev
    ```
 
 ### Setting up the Frontend
